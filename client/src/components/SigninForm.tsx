@@ -14,7 +14,8 @@ const SigninForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signIn(form);
+    const data = await signIn(form);
+    console.log(data);
   };
 
   return (

@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
+import signin from '@/handlers/auth/signin/post';
 import signup from '@/handlers/auth/signup/post';
 
 const router = express.Router();
@@ -7,6 +8,7 @@ router.get('/', async (req, res) => {
   res.send('Hello World!');
 });
 
+router.post('/auth/signin', signin);
 router.post('/auth/signup', signup);
 
 /**
