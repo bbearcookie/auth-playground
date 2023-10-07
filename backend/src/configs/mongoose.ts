@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const URI = `${process.env.MONGO_LOCAL_URI}/${process.env.DATABASE_NAME}`;
+const URI = `mongodb://localhost:27017/auth-test`;
 
 mongoose
   .connect(URI)

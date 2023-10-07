@@ -1,7 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import getUsers from '@/handlers/users/get';
-import getUserDetail from '@/handlers/users/[_id]/get';
-import postUsers from '@/handlers/users/post';
+import signup from '@/handlers/auth/signup/post';
 
 const router = express.Router();
 
@@ -9,8 +7,7 @@ router.get('/', async (req, res) => {
   res.send('Hello World!');
 });
 
-router.route('/users').get(getUsers).post(postUsers);
-router.route('/users/:_id').get(getUserDetail);
+router.post('/auth/signup', signup);
 
 /**
  * 앞선 미들웨어에서 처리되지 않은 오류는 이 미들웨어에서 처리합니다.
