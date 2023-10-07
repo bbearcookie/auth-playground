@@ -1,4 +1,8 @@
 {
+  "ts-node": {
+    "files": true
+  },
+  "files": ["src/types/env.d.ts"],
   "compilerOptions": {
     "baseUrl": "src",
     "rootDir": "src",
