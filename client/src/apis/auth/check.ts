@@ -2,6 +2,7 @@ import { baseInstance } from '../instance';
 
 interface Response {
   accessToken: string;
+  username: string;
 }
 
 export const check = async (accessToken: string) => {
