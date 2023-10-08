@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { signIn } from '../apis/auth/signIn';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Signin = () => {
   const [form, setForm] = useState({
@@ -10,6 +11,8 @@ const Signin = () => {
   });
 
   const [message, setMessage] = useState('');
+
+  const { handleLogin } = useContext(AuthContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,6 +23,8 @@ const Signin = () => {
 
     try {
       const data = await signIn(form);
+
+      handleLogin(data.accessToken, data.username);
 
       setMessage(`어서오세요 ${data.username}님! 당신의 토큰은 ${data.accessToken}`);
     } catch (err) {
