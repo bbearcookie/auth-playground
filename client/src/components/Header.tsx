@@ -13,6 +13,7 @@ const Header = () => {
       alert(`${data.username} 님은 로그인 중이십니다.`);
     } catch (err) {
       console.error(err);
+      alert('로그인이 필요합니다.');
     }
   };
 

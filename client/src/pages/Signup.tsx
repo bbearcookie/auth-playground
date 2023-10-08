@@ -38,7 +38,12 @@ const Signup = () => {
         <button type="submit">회원가입</button>
       </form>
       <div>{message}</div>
-      <Link to="/signin">로그인 하러가기</Link>
+      <div>
+        <Link to="/signin">로그인 하러가기</Link>
+      </div>
+      <div>
+        <Link to="/">메인으로 가기</Link>
+      </div>
     </>
   );
 };

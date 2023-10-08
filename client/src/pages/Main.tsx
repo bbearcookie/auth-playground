@@ -10,6 +10,9 @@ const Main = () => {
       <div>
         <Link to="/signin">로그인 하러 가기</Link>
       </div>
+      <div>
+        <Link to="/onlyuser">회원만 볼 수 있는 페이지 보러 가기</Link>
+      </div>
     </div>
   );
 };

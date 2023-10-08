@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from '../layouts/Root';
 import SignupForm from '../pages/Signup';
 import SigninForm from '../pages/Signin';
+import OnlyUser from '../pages/OnlyUser';
 import Main from '../pages/Main';
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <SigninForm />,
+      },
+      {
+        path: '/onlyuser',
+        element: <OnlyUser />,
       },
     ],
   },

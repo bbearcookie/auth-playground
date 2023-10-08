@@ -43,7 +43,12 @@ const Signin = () => {
         <button type="submit">로그인</button>
       </form>
       <div>{message}</div>
-      <Link to="/signup">회원가입 하러가기</Link>
+      <div>
+        <Link to="/signup">회원가입 하러가기</Link>
+      </div>
+      <div>
+        <Link to="/">메인으로 가기</Link>
+      </div>
     </>
   );
 };
