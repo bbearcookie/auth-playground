@@ -21,7 +21,7 @@ const Signin = () => {
     try {
       const data = await signIn(form);
 
-      setMessage(`어서오세요 ${data.username}님!`);
+      setMessage(`어서오세요 ${data.username}님! 당신의 토큰은 ${data.accessToken}`);
     } catch (err) {
       if (err instanceof AxiosError) {
         setMessage(err.response?.data);

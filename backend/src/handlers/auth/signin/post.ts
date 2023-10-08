@@ -1,6 +1,7 @@
 import { Handler } from 'express';
 import { z } from 'zod';
 import { makeSalt, encryptText } from '@/utils/encrypt';
+import { signToken } from '@/utils/jwt';
 import User from '@/models/User';
 
 const requestSchema = z.object({
@@ -22,7 +23,12 @@ const handler: Handler = async (req, res) => {
   const encryptedPassword = encryptText(password, user.salt);
   if (encryptedPassword !== user.password) return res.status(401).json('비밀번호가 다릅니다.');
 
-  res.json(user);
+  const payload = { username: user.username };
+
+  const accessToken = signToken('accessToken', payload);
+  const refreshToken = signToken('refreshToken', payload);
+
+  res.json({ username: user.username, accessToken });
 };
 
 export default handler;
