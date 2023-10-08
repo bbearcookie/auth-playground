@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signUp } from '../../apis/auth/signUp';
+import { AxiosError } from 'axios';
+import { signUp } from '../apis/auth/signUp';
 
 const Signup = () => {
   const [form, setForm] = useState({
     username: '',
     password: '',
   });
+
+  const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,7 +18,15 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signUp(form);
+    try {
+      const data = await signUp(form);
+
+      setMessage(`가입에 성공하셨습니다 ${data.username}님!`);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        setMessage(err.response?.data);
+      }
+    }
   };
 
   return (
@@ -26,6 +37,7 @@ const Signup = () => {
         <input type="password" name="password" value={form.password} onChange={handleChange} />
         <button type="submit">회원가입</button>
       </form>
+      <div>{message}</div>
       <Link to="/signin">로그인 하러가기</Link>
     </>
   );
