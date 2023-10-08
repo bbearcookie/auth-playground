@@ -6,8 +6,8 @@ const schema = new Schema({
   salt: { type: String, required: true },
 });
 
-export type IUser = InferSchemaType<typeof schema>;
+export type User = InferSchemaType<typeof schema>;
 
-const User = model<IUser>('User', schema);
+const UserModel = model('User', schema);
 
-export default User;
+export default UserModel;
