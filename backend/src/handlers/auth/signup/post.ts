@@ -1,6 +1,7 @@
 import { Handler } from 'express';
 import { z } from 'zod';
-import User from '@/models/User';
+import User, { IUser } from '@/models/User';
+import { makeSalt, encryptText } from '@/utils/encrypt';
 
 const requestSchema = z.object({
   body: z.object({
@@ -15,9 +16,15 @@ const handler: Handler = async (req, res, next) => {
   const { body } = req as unknown as RequestData;
   const { username, password } = body;
 
-  const user = await User.create({ username, password });
+  const salt = makeSalt(32);
+  const encryptedPassword = encryptText(password, salt);
 
-  res.json(user);
+  const alreadyUser = await User.findOne({ username });
+  if (alreadyUser) return res.status(409).json('이미 존재하는 유저입니다.');
+
+  const newUser = await User.create({ username, password: encryptedPassword, salt });
+
+  res.json({ username: newUser.username });
 };
 
 export default handler;
