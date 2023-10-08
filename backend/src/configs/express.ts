@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 require('express-async-errors');
 
-const whitelist = ['http://localhost:5173'];
-
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+const whitelist = ['http://localhost:5173'];
 
 app.use(
   cors({
@@ -12,6 +17,7 @@ app.use(
       if (origin && whitelist.indexOf(origin) !== -1) callback(null, true);
       else callback(null, false);
     },
+    credentials: true,
   })
 );
 
@@ -24,8 +30,5 @@ app.use((req, res, next) => {
 
   next();
 });
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 export default app;

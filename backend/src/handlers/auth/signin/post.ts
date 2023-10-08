@@ -1,6 +1,6 @@
 import { Handler } from 'express';
 import { z } from 'zod';
-import { makeSalt, encryptText } from '@/utils/encrypt';
+import { encryptText } from '@/utils/encrypt';
 import { signToken } from '@/utils/jwt';
 import User from '@/models/User';
 
@@ -24,10 +24,12 @@ const handler: Handler = async (req, res) => {
   if (encryptedPassword !== user.password) return res.status(401).json('비밀번호가 다릅니다.');
 
   const payload = { username: user.username };
-
   const accessToken = signToken('accessToken', payload);
   const refreshToken = signToken('refreshToken', payload);
 
+  console.log(req.cookies.refreshToken);
+
+  res.cookie('refreshToken', refreshToken);
   res.json({ username: user.username, accessToken });
 };
 
