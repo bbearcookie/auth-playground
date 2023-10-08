@@ -2,7 +2,7 @@
   "ts-node": {
     "files": true
   },
-  "files": ["src/types/env.d.ts"],
+  "files": ["src/types/env.d.ts", "src/types/express.d.ts"],
   "compilerOptions": {
     "baseUrl": "src",
     "rootDir": "src",
@@ -17,5 +17,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "./src/**/*.ts"],
-  "exclude": ["backend/node_modules", "dist"]
+  "exclude": ["node_modules", "dist"]
 }

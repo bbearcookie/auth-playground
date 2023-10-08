@@ -15,6 +15,16 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  const authorization = req.headers['authorization'];
+
+  if (authorization?.startsWith('Bearer ')) {
+    req.accessToken = authorization.split(' ')[1];
+  }
+
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
