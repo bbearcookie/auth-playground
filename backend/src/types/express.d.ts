@@ -1,9 +1,5 @@
-export {};
-
-declare global {
-  namespace Express {
-    interface Request {
-      accessToken?: string;
-    }
+declare namespace Express {
+  export interface Request {
+    accessToken?: string;
   }
 }
