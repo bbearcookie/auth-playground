@@ -8,7 +8,22 @@ import OnlyUser from '../pages/OnlyUser';
 import OnlyGuest from '../pages/OnlyGuest';
 import Main from '../pages/Main';
 
-const authorization: RouteObject[] = [
+const defaultRoute: RouteObject[] = [
+  {
+    path: '/',
+    element: <Main />,
+  },
+  {
+    path: '/signup',
+    element: <SignupForm />,
+  },
+  {
+    path: '/signin',
+    element: <SigninForm />,
+  },
+];
+
+const authorizationRoute: RouteObject[] = [
   {
     path: '/',
     element: <Authorization />,
@@ -21,7 +36,7 @@ const authorization: RouteObject[] = [
   },
 ];
 
-const notAuthorization: RouteObject[] = [
+const notAuthorizationRoute: RouteObject[] = [
   {
     path: '/',
     element: <NotAuthorization />,
@@ -38,22 +53,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    children: [
-      {
-        path: '/',
-        element: <Main />,
-      },
-      {
-        path: '/signup',
-        element: <SignupForm />,
-      },
-      {
-        path: '/signin',
-        element: <SigninForm />,
-      },
-      ...authorization,
-      ...notAuthorization,
-    ],
+    children: [...defaultRoute, ...authorizationRoute, ...notAuthorizationRoute],
   },
 ]);
 
