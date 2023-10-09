@@ -1,21 +1,8 @@
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-import { check } from '../apis/auth/check';
 
 const Header = () => {
-  const { accessToken, username, handleLogin } = useContext(AuthContext);
-
-  const handleCheck = async () => {
-    try {
-      const data = await check(accessToken);
-
-      handleLogin(data.accessToken, data.username);
-      alert(`${data.username} 님은 로그인 중이십니다.`);
-    } catch (err) {
-      console.error(err);
-      alert('로그인이 필요합니다.');
-    }
-  };
+  const { username, handleCheck } = useContext(AuthContext);
 
   return (
     <header>

@@ -1,7 +1,7 @@
 import { Handler } from 'express';
 import { z } from 'zod';
 import { encryptText } from '@/utils/encrypt';
-import { signToken, verifyToken } from '@/utils/jwt';
+import { signToken } from '@/utils/jwt';
 import User from '@/models/User';
 
 const requestSchema = z.object({
@@ -26,14 +26,6 @@ const handler: Handler = async (req, res) => {
   const payload = { username: user.username };
   const accessToken = signToken('accessToken', payload);
   const refreshToken = signToken('refreshToken', payload);
-
-  const accessDecoded = verifyToken(accessToken);
-  const refreshDecoded = verifyToken(refreshToken);
-
-  console.log('액세스토큰');
-  console.log(accessDecoded);
-  console.log('리프레시토큰');
-  console.log(refreshDecoded);
 
   res.cookie('refreshToken', refreshToken);
   res.json({ username: user.username, accessToken });
