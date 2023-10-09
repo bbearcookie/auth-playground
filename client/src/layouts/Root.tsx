@@ -8,7 +8,7 @@ const Root = () => {
 
   useEffect(() => {
     handleCheck();
-  }, [handleCheck]);
+  }, []);
 
   return (
     <>
