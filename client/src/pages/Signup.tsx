@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { signUp } from '../apis/auth/signUp';
+import { signUp } from '@/apis/auth/signUp';
 
 const Signup = () => {
   const [form, setForm] = useState({

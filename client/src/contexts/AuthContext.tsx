@@ -1,6 +1,6 @@
 import { useState, useCallback, createContext, useMemo, PropsWithChildren } from 'react';
-import { check } from '../apis/auth/check';
-import { signOut } from '../apis/auth/signOut';
+import { check } from '@/apis/auth/check';
+import { signOut } from '@/apis/auth/signOut';
 
 export const AuthContext = createContext({
   isLoading: true,

@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { signIn } from '../apis/auth/signIn';
-import { AuthContext } from '../contexts/AuthContext';
+import { signIn } from '@/apis/auth/signIn';
+import { AuthContext } from '@/contexts/AuthContext';
 
 const Signin = () => {
   const [form, setForm] = useState({

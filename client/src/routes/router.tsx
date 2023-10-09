@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
-import Root from '../layouts/Root';
-import Authorization from '../layouts/Authorization';
-import NotAuthorization from '../layouts/NotAuthorization';
-import SignupForm from '../pages/Signup';
-import SigninForm from '../pages/Signin';
-import OnlyUser from '../pages/OnlyUser';
-import OnlyGuest from '../pages/OnlyGuest';
-import Main from '../pages/Main';
+import Root from '@/layouts/Root';
+import Authorization from '@/layouts/Authorization';
+import NotAuthorization from '@/layouts/NotAuthorization';
+import SignupForm from '@/pages/Signup';
+import SigninForm from '@/pages/Signin';
+import OnlyUser from '@/pages/OnlyUser';
+import OnlyGuest from '@/pages/OnlyGuest';
+import Main from '@/pages/Main';
 
 const defaultRoute: RouteObject[] = [
   {

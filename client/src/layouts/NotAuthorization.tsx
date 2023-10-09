@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
+import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '@/contexts/AuthContext';
 
 const NotAuthorization = () => {
   const { isLoading, isLoggedIn } = useContext(AuthContext);
