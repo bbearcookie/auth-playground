@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { signIn } from '../apis/auth/signIn';
 import { AuthContext } from '../contexts/AuthContext';
@@ -10,6 +10,9 @@ const Signin = () => {
     password: '',
   });
   const [message, setMessage] = useState('');
+  const location = useLocation();
+  const redirectTo = location.state?.redirectFrom?.pathname || '';
+  const navigate = useNavigate();
 
   const { handleLogin } = useContext(AuthContext);
 
@@ -25,6 +28,10 @@ const Signin = () => {
 
       handleLogin(data.accessToken, data.username);
       setMessage(`어서오세요 ${data.username}님! 당신의 토큰은 ${data.accessToken}`);
+
+      if (redirectTo) {
+        navigate(redirectTo);
+      }
     } catch (err) {
       if (err instanceof AxiosError) {
         setMessage(err.response?.data);
