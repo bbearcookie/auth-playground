@@ -8,7 +8,6 @@ const Signup = () => {
     username: '',
     password: '',
   });
-
   const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

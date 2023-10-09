@@ -2,37 +2,50 @@ import { useState, useCallback, createContext, useMemo, PropsWithChildren } from
 import { check } from '../apis/auth/check';
 
 export const AuthContext = createContext({
+  isLoading: true,
+  isLoggedIn: false,
   accessToken: '',
-  username: '',
-  setUser: (accessToken: string, username: string) => {},
+  user: {
+    username: '',
+  },
+  handleLogin: (accessToken: string, username: string) => {},
   handleCheck: () => {},
 });
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [accessToken, setAccessToken] = useState('');
-  const [username, setUsername] = useState('');
+  const [user, setUser] = useState({
+    username: '',
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const isLoggedIn = useMemo(() => !!accessToken, [accessToken]);
 
-  const setUser = useCallback((accessToken: string, username: string) => {
+  const handleLogin = useCallback((accessToken: string, username: string) => {
     setAccessToken(accessToken);
-    setUsername(username);
+    setUser({ username });
   }, []);
 
   const handleCheck = useCallback(async () => {
+    setIsLoading(true);
+
     try {
       const data = await check(accessToken);
+      handleLogin(data.accessToken, data.username);
 
-      setUser(data.accessToken, data.username);
       console.log(`${data.username} 님은 로그인 중이십니다.`);
     } catch (err) {
-      setUser('', '');
+      handleLogin('', '');
+
       console.error(err);
       console.log('로그인이 필요합니다.');
+    } finally {
+      setIsLoading(false);
     }
-  }, [accessToken, setUser]);
+  }, [accessToken, handleLogin]);
 
   const contextValue = useMemo(
-    () => ({ accessToken, username, setUser, handleCheck }),
-    [accessToken, username, setUser, handleCheck]
+    () => ({ isLoading, isLoggedIn, accessToken, user, handleLogin, handleCheck }),
+    [isLoading, isLoggedIn, accessToken, user, handleLogin, handleCheck]
   );
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;

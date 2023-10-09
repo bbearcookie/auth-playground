@@ -11,7 +11,7 @@ const Signin = () => {
   });
   const [message, setMessage] = useState('');
 
-  const { setUser } = useContext(AuthContext);
+  const { handleLogin } = useContext(AuthContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ const Signin = () => {
     try {
       const data = await signIn(form);
 
-      setUser(data.accessToken, data.username);
+      handleLogin(data.accessToken, data.username);
       setMessage(`어서오세요 ${data.username}님! 당신의 토큰은 ${data.accessToken}`);
     } catch (err) {
       if (err instanceof AxiosError) {
