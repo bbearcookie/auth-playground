@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import Root from '../layouts/Root';
 import Authorization from '../layouts/Authorization';
+import NotAuthorization from '../layouts/NotAuthorization';
 import SignupForm from '../pages/Signup';
 import SigninForm from '../pages/Signin';
 import OnlyUser from '../pages/OnlyUser';
+import OnlyGuest from '../pages/OnlyGuest';
 import Main from '../pages/Main';
 
 const authorization: RouteObject[] = [
@@ -14,6 +16,19 @@ const authorization: RouteObject[] = [
       {
         path: '/onlyuser',
         element: <OnlyUser />,
+      },
+    ],
+  },
+];
+
+const notAuthorization: RouteObject[] = [
+  {
+    path: '/',
+    element: <NotAuthorization />,
+    children: [
+      {
+        path: '/onlyguest',
+        element: <OnlyGuest />,
       },
     ],
   },
@@ -37,6 +52,7 @@ const router = createBrowserRouter([
         element: <SigninForm />,
       },
       ...authorization,
+      ...notAuthorization,
     ],
   },
 ]);
