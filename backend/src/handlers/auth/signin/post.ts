@@ -27,7 +27,7 @@ const handler: Handler = async (req, res) => {
   const accessToken = signToken('accessToken', payload);
   const refreshToken = signToken('refreshToken', payload);
 
-  res.cookie('refreshToken', refreshToken);
+  res.cookie('refreshToken', refreshToken, { httpOnly: true });
   res.json({ username: user.username, accessToken });
 };
 

@@ -5,9 +5,6 @@ export interface Payload {
 }
 
 const JWT_SECRET = 'jwt_secret_for_test';
-// const ACCESS_TOKEN_EXPIRES_IN = 60 * 1000;
-// const REFRESH_TOKEN_EXPIRES_IN = 60 * 60 * 1000;
-
 const ACCESS_TOKEN_EXPIRES_IN = 3;
 const REFRESH_TOKEN_EXPIRES_IN = 600;
 
