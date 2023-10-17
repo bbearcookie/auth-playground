@@ -23,6 +23,8 @@ jobs:
       with:
         path: ./client
     - run: ls -al
+    - run: cd ./client
+    - run: ls -al
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
