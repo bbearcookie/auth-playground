@@ -11,27 +11,22 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
+      with:
+        path: ./client
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install dependencies
-      working-directory: ./client
-      run: npm i
-    - name: Build the app
-      working-directory: ./client
-      run: npm run build --if-present
+    - run: npm i
+    - run: npm run build --if-present
     - uses: awact/s3-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
