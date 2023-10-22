@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <header>
       <h1>못생긴 헤더</h1>
-      <p>수정을 했는데 CI가 잘 될까요?</p>
       <div>{isLoggedIn ? `어서오세요 ${user.username}님` : `당신은 로그인을 안하셨군요!`}</div>
       <button onClick={handleCheck}>로그인 확인</button>
       {isLoggedIn && <button onClick={handleLogout}>로그아웃</button>}
