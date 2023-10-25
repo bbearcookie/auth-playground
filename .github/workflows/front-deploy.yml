@@ -20,6 +20,11 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./client/package-lock.json
 
+      - name: Setup .env
+        run: |
+          echo "VITE_A=${{ secrets.VITE_A }}" >> .env
+          echo "VITE_B=${{ secrets.VITE_B }}" >> .env
+
       - run: npm i
       - run: npm run build --if-present
 
