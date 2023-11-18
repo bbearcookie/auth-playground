@@ -1,6 +1,5 @@
-#!/bin/bash
-REPOSITORY=/home/ubuntu/build
+REPOSITORY=/home/ubuntu/codedeploy_build
 
 cd $REPOSITORY
 
-pm2 start "npm start"
+sudo /usr/bin/pm2 start "npm start"
