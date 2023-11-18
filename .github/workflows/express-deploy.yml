@@ -20,6 +20,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./backend/package-lock.json
 
+      - run: cat package.json
+
       - run: npm ci
       - run: npm run build
 
