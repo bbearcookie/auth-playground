@@ -5,7 +5,7 @@
   "files": ["src/types/env.d.ts", "src/types/express.d.ts"],
   "compilerOptions": {
     "baseUrl": "src",
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "dist",
     "paths": {
       "@/*": ["./*"]
