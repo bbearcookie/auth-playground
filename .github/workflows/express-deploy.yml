@@ -1,0 +1,44 @@
+name: Express CI/CD
+
+on:
+  push:
+    branches: ['deploy']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Move appspec.yml
+        run: |
+          mv backend/appspec.yml appspec.yml
+          mv backend/scripts scripts
+
+      - name: AWS configure credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_BACKEND_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_BACKEND_SECRET_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Compress Files
+        run: tar cvfz ./$GITHUB_SHA.gz backend
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.gz s3://${{secrets.AWS_BACKEND_S3_BUCKET}}/deployment/$GITHUB_SHA.gz
+
+      - name: Code Deploy
+        run: aws deploy create-deployment
+          --application-name ${{secrets.AWS_BACKEND_CODEDEPLOY_APPLICATION_NAME}}
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name ${{secrets.AWS_BACKEND_CODEDEPLOY_GROUP_NAME}}
+          --s3-location bucket=${{secrets.AWS_BACKEND_S3_BUCKET}},bundleType=tgz,key=deployment/$GITHUB_SHA.gz
