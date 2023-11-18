@@ -20,15 +20,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./backend/package-lock.json
 
-      - run: cat package.json
-
       - run: npm ci
       - run: npm run build
-
-      - name: Move appspec.yml
-        run: |
-          mv backend/appspec.yml appspec.yml
-          mv backend/scripts scripts
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v4
