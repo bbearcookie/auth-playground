@@ -7,7 +7,7 @@ import signout from '@/handlers/auth/signout/get';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  res.send('Hello World!!!!');
+  res.send('Hello World!!');
 });
 
 router.get('/auth/check', check);
