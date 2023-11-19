@@ -5,8 +5,6 @@ import router from '@/routes/router';
 function App() {
   return (
     <AuthProvider>
-      {import.meta.env.VITE_A}
-      {import.meta.env.VITE_B}
       <RouterProvider router={router} />
     </AuthProvider>
   );
