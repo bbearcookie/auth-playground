@@ -4,6 +4,7 @@ const Main = () => {
   return (
     <div>
       <h1>Main Page!</h1>
+      <img src="/grizz.jpg" alt="그리즐리" />
       <div>
         <Link to="/signup">회원가입 하러 가기</Link>
       </div>
