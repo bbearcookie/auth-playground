@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-// const baseURL = 'http://localhost:5010';
-const baseURL = 'https://api.bearcookiestudy.site';
+const baseURL = import.meta.env.PROD
+  ? import.meta.env.VITE_PROD_BACKEND_API
+  : '/api';
 
 export const baseInstance = axios.create({ baseURL, withCredentials: true });
