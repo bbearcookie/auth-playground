@@ -7,11 +7,16 @@ import SigninForm from '@/pages/Signin';
 import OnlyUser from '@/pages/OnlyUser';
 import OnlyGuest from '@/pages/OnlyGuest';
 import Main from '@/pages/Main';
+import S3 from '@/pages/S3';
 
 const defaultRoute: RouteObject[] = [
   {
     path: '/',
     element: <Main />,
+  },
+  {
+    path: '/s3',
+    element: <S3 />,
   },
   {
     path: '/signup',
@@ -53,7 +58,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    children: [...defaultRoute, ...authorizationRoute, ...notAuthorizationRoute],
+    children: [
+      ...defaultRoute,
+      ...authorizationRoute,
+      ...notAuthorizationRoute,
+    ],
   },
 ]);
 

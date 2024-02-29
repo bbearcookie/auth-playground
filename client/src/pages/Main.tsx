@@ -6,6 +6,9 @@ const Main = () => {
       <h1>Main Page!</h1>
       <img src="/grizz.jpg" alt="그리즐리" />
       <div>
+        <Link to="/s3">S3 이미지 다운로드 기능 사용하러 가기</Link>
+      </div>
+      <div>
         <Link to="/signup">회원가입 하러 가기</Link>
       </div>
       <div>
