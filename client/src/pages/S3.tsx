@@ -28,9 +28,15 @@ const S3 = () => {
     window.URL.revokeObjectURL(url);
   };
 
+  const handleOptions = async (targetUrl: string) => {
+    const res = await axios.options(targetUrl);
+    console.log(res);
+  };
+
   return (
     <div>
       <h1>S3 버킷에 업로드 된 이미지를 다운로드합니다.</h1>
+      <img src={S3_IMAGE_URL} alt="큰 곰 이미지" />
       <img src={CLOUDFRONT_IMAGE_URL} alt="큰 곰 이미지" />
       <div>
         <Link to="/">메인으로 가기</Link>
@@ -45,6 +51,11 @@ const S3 = () => {
         <div>
           <button onClick={() => handleDownload(CLOUDFRONT_IMAGE_URL)}>
             Cloudfront 이미지 다운로드 해보기
+          </button>
+        </div>
+        <div>
+          <button onClick={() => handleOptions(S3_IMAGE_URL)}>
+            S3 OPTIONS 확인
           </button>
         </div>
       </div>
