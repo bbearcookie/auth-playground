@@ -4,7 +4,7 @@ import App from './App.tsx';
 import { initializeFirebase } from './config/firebase.ts';
 import './index.css';
 
-initializeFirebase();
+// initializeFirebase();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
