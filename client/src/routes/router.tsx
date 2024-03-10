@@ -8,6 +8,7 @@ import OnlyUser from '@/pages/OnlyUser';
 import OnlyGuest from '@/pages/OnlyGuest';
 import Main from '@/pages/Main';
 import S3 from '@/pages/S3';
+import { getAnalytics, logEvent } from 'firebase/analytics';
 
 const defaultRoute: RouteObject[] = [
   {
@@ -65,5 +66,14 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// router.subscribe((location) => {
+//   const analytics = getAnalytics();
+//   // console.log(analytics);
+
+//   logEvent(analytics, 'screen_view', { value: location.location.pathname });
+
+//   console.log('구독:' + location.location.pathname);
+// });
 
 export default router;

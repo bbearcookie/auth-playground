@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '@/contexts/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const NotAuthorization = () => {
   const { isLoading, isLoggedIn } = useContext(AuthContext);
@@ -19,7 +20,14 @@ const NotAuthorization = () => {
     );
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <Helmet>
+        <title>Not-Authorization Layout</title>
+      </Helmet>
+      <Outlet />
+    </>
+  );
 };
 
 export default NotAuthorization;
